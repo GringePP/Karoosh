@@ -16,7 +16,7 @@ class BaseClass {
     check(quiz) {
         return currentAnswer => {
             const equal = Equivalent.equal(currentAnswer, quiz());
-            console.log(quiz.name, ': ', equal.result ? '√' : '× \t' + equal.reason);
+            console.log(quiz.name, ': ', equal.result ? chalk.green('√') : chalk.red('× \t' + equal.reason));
             return equal;
         }
     }
@@ -27,7 +27,8 @@ class BaseClass {
 
     checkAll() {
         const items = this.getAllItems();
-        console.log('----' + this.name + '----');
+        console.log('\n');
+        console.log(chalk.bgWhite.blue('----' + this.name + '----'));
         items.forEach(v => {
             this.check(v[0])(v[1]);
         });
